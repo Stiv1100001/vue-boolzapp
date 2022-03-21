@@ -83,6 +83,7 @@
 #emoji,
 #microphone {
     width: 10%;
+    color: rgba(100, 100, 100, 0.781);
 }
 
 .message {
@@ -90,6 +91,36 @@
 
     min-width: 40%;
 }
+
+.option-arrow {
+    right: 10px;
+    display: none;
+}
+
+.option-arrow:hover+.message-option {
+    display: block;
+}
+
+.message-option {
+    display: none;
+    top: 35%;
+    right: 0;
+    z-index: 3;
+}
+
+.message-option span:hover {
+    cursor: pointer;
+    background-color: rgba(173, 173, 173, 0.5);
+}
+
+.message-option:hover {
+    display: block;
+}
+
+.message:hover .option-arrow {
+    display: block;
+}
+
 
 .message .hour {
     font-size: 10px;

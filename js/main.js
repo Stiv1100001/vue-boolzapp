@@ -220,8 +220,12 @@ const app = new Vue({
 
     search() {
       this.contactsToShow = this.contacts.filter((contact) =>
-        contact.name.includes(this.toSearch.trim())
+        contact.name.toLowerCase().includes(this.toSearch.trim().toLowerCase())
       );
+    },
+
+    deleteMessage(index) {
+      this.showedChat.messages.splice(index, 1);
     },
   },
 });

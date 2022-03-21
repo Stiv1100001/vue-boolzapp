@@ -135,13 +135,22 @@
 
               <div id="chat" class="flex-grow-1 overflow-auto">
                 <ul class="w-100 h-100 overflow-auto p-0 m-0">
-                  <li v-for="message in showedChat.messages" class="d-flex">
+                  <li v-for="(message, index) in showedChat.messages" class="d-flex">
                     <div
                       class="px-2 pt-2 pb-3 my-2 message position-relative"
                       :class="message.status === 'sent' ? 'sent' : 'received'"
                     >
                       <span>{{ message.message }}</span>
                       <span class="hour position-absolute">{{ getTime(message.date) }}</span>
+                      <span class="option-arrow position-absolute top-0"
+                        ><i class="fa-solid fa-chevron-down"></i
+                      ></span>
+                      <div class="message-option position-absolute bg-white w-75 rounded-3">
+                        <span class="d-block p-2">Message Info </span>
+                        <span @click="deleteMessage(index)" class="p-2 d-block"
+                          >Delete Message</span
+                        >
+                      </div>
                     </div>
                   </li>
                 </ul>
