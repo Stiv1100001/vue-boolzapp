@@ -164,13 +164,17 @@ const app = new Vue({
         ],
       },
     ],
+    contactsToShow: [],
 
     showedChat: {},
     newMessage: "",
+    toSearch: "",
   },
 
   beforeMount() {
-    this.showedChat = this.contacts[0];
+    Object.assign(this.contactsToShow, this.contacts);
+    // this.contactsToShow = this.contacts;
+    this.showedChat = this.contactsToShow[0];
   },
 
   methods: {
@@ -211,9 +215,13 @@ const app = new Vue({
     },
 
     getTime(date) {
-      console.log(date);
-      console.log(dayjs(date.trim(), "DD/MM/YYYY HH:mm:ss").format("HH:mm"));
       return dayjs(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
+    },
+
+    search() {
+      this.contactsToShow = this.contacts.filter((contact) =>
+        contact.name.includes(this.toSearch.trim())
+      );
     },
   },
 });

@@ -78,12 +78,18 @@
                     type="text"
                     class="border-0 h-100"
                     placeholder="Cerca o inizia una nuova chat"
+                    v-model="toSearch"
+                    @keyup="search()"
                   />
                 </div>
               </div>
-              <ul v-if="contacts.length > 0" id="chats" class="p-0 m-0 overflow-auto bg-white">
+              <ul
+                v-if="contactsToShow.length > 0"
+                id="chats"
+                class="p-0 m-0 overflow-auto bg-white"
+              >
                 <li
-                  v-for="contact in contacts"
+                  v-for="contact in contactsToShow"
                   v-show="contact.visible"
                   class="chat-item list-unstyled py-1 px-2 w-100 d-flex"
                   :class="contact === showedChat ? 'active' : '' "
