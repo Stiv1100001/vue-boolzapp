@@ -178,9 +178,10 @@ const app = new Vue({
       this.showedChat = contact;
     },
 
-    truncatePhrase(phrase) {
-      if (phrase.length > 40) {
-        return phrase.substring(0, 38) + "...";
+    truncateLastMessage(contact) {
+      const phrase = contact.messages[contact.messages.length - 1].message;
+      if (phrase.length > 30) {
+        return phrase.substring(0, 28) + "...";
       }
 
       return phrase;
@@ -188,7 +189,7 @@ const app = new Vue({
 
     sendMessage() {
       this.showedChat.messages.push({
-        date: "10/01/2020 15:30:55",
+        date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
         message: this.newMessage,
         status: "sent",
       });
@@ -197,11 +198,22 @@ const app = new Vue({
 
       setTimeout(() => {
         this.showedChat.messages.push({
-          date: "10/01/2020 15:30:55",
+          date: dayjs().format("DD/MM/YYYY H:m:ss"),
           message: "ok",
           status: "received",
         });
       }, 1000);
+    },
+
+    getLastMessageTime(contact) {
+      const date = contact.messages[contact.messages.length - 1].date;
+      return dayjs(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
+    },
+
+    getTime(date) {
+      console.log(date);
+      console.log(dayjs(date.trim(), "DD/MM/YYYY HH:mm:ss").format("HH:mm"));
+      return dayjs(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
     },
   },
 });

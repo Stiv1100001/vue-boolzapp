@@ -27,6 +27,9 @@
 
     <!-- Vue -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.common.dev.min.js"></script>
+
+    <!-- Day JS -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   </head>
   <body>
     <main id="app" class="vh-100 vw-100 position-relative">
@@ -93,15 +96,10 @@
                   />
                   <div class="chat-text d-flex flex-column flex-grow-1 ms-2">
                     <span class="fw-bold">{{ contact.name }}</span>
-                    <span class="text-wa-grey fs-6">
-                      {{ truncatePhrase(contact.messages[contact.messages.length - 1].message)
-                      }}</span
-                    >
+                    <span class="text-wa-grey fs-6"> {{ truncateLastMessage(contact) }}</span>
                   </div>
                   <div class="date">
-                    <span class="text-wa-grey"
-                      >{{ contact.messages[contact.messages.length - 1].date.split(" ")[1] }}</span
-                    >
+                    <span class="text-wa-grey">{{ getLastMessageTime(contact) }}</span>
                   </div>
                 </li>
               </ul>
@@ -137,10 +135,7 @@
                       :class="message.status === 'sent' ? 'sent' : 'received'"
                     >
                       <span>{{ message.message }}</span>
-                      <span class="hour position-absolute"
-                        >{{ showedChat.messages[showedChat.messages.length - 1].date.split(" ")[1]
-                        }}</span
-                      >
+                      <span class="hour position-absolute">{{ getTime(message.date) }}</span>
                     </div>
                   </li>
                 </ul>
@@ -160,7 +155,8 @@
                   />
                 </div>
                 <div id="microphone" class="h-100 d-flex justify-content-center align-items-center">
-                  <i class="fa-solid fa-microphone fa-xl"></i>
+                  <i v-if="newMessage === ''" class="fa-solid fa-microphone fa-xl"></i>
+                  <i v-else class="fa-solid fa-location-arrow fa-xl"></i>
                 </div>
               </div>
             </div>
