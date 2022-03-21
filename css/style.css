@@ -1,0 +1,23 @@
+.bg-wa-green {
+    background-color: #00a884;
+}
+
+.bg-wa-grey {
+    background-color: #e0e0dd;
+}
+
+.bg-chat-grey {
+    background-color: #eaeaea;
+}
+
+#left-chat {
+    flex-basis: calc(100% / 3);
+}
+
+#right-chat {
+    flex-basis: calc(100% / 3 * 2);
+}
+
+#account-info {
+    height: 8%;
+}
