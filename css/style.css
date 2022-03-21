@@ -70,14 +70,37 @@
 }
 
 .chat-item:hover, .chat-item.active {
-    background-color: rgba(179, 179, 179, 0.63);
+    background-color: rgba(179, 179, 179, 0.336);
 }
 
 #chat {
     background-image: url('../img/mine.jpg');
+    padding: 0 7rem;
 }
 
 #emoji,
 #microphone {
     width: 10%;
+}
+
+.message {
+    border-radius: 5px;
+
+    min-width: 40%;
+}
+
+.message .hour {
+    font-size: 10px;
+
+    bottom: 2px;
+    right: 10px;
+}
+
+.sent {
+    background-color: #d5f9ba;
+    margin-left: auto;
+}
+
+.received {
+    background-color: white;
 }

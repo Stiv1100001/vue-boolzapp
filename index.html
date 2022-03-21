@@ -83,6 +83,8 @@
                   v-for="contact in contacts"
                   v-show="contact.visible"
                   class="chat-item list-unstyled py-1 px-2 w-100 d-flex"
+                  :class="contact === showedChat ? 'active' : '' "
+                  @click="setShowedChat(contact)"
                 >
                   <img
                     :src="`img/avatar${contact.avatar}.jpg`"
@@ -91,8 +93,9 @@
                   />
                   <div class="chat-text d-flex flex-column flex-grow-1 ms-2">
                     <span class="fw-bold">{{ contact.name }}</span>
-                    <span class="text-wa-grey">
-                      {{ contact.messages[contact.messages.length - 1].message }}</span
+                    <span class="text-wa-grey fs-6">
+                      {{ truncatePhrase(contact.messages[contact.messages.length - 1].message)
+                      }}</span
                     >
                   </div>
                   <div class="date">
@@ -126,7 +129,22 @@
                 </div>
               </div>
 
-              <div id="chat" class="flex-grow-1"></div>
+              <div id="chat" class="flex-grow-1">
+                <ul class="w-100 h-100 overflow-auto p-0 m-0">
+                  <li v-for="message in showedChat.messages" class="d-flex">
+                    <div
+                      class="px-2 pt-2 pb-3 my-2 message position-relative"
+                      :class="message.status === 'sent' ? 'sent' : 'received'"
+                    >
+                      <span>{{ message.message }}</span>
+                      <span class="hour position-absolute"
+                        >{{ showedChat.messages[showedChat.messages.length - 1].date.split(" ")[1]
+                        }}</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
 
               <div id="chat-control" class="py-1 d-flex">
                 <div id="emoji" class="h-100 d-flex justify-content-center align-items-center">
@@ -137,6 +155,8 @@
                     type="text"
                     class="form-control border-0"
                     placeholder="Scrivi un messaggio"
+                    v-model="newMessage"
+                    @keyup.enter="sendMessage()"
                   />
                 </div>
                 <div id="microphone" class="h-100 d-flex justify-content-center align-items-center">

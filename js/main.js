@@ -165,29 +165,43 @@ const app = new Vue({
       },
     ],
 
-    showedChat: {
-      name: "Michele",
-      avatar: "_1",
-      visible: true,
-      messages: [
-        {
-          date: "10/01/2020 15:30:55",
-          message: "Hai portato a spasso il cane?",
-          status: "sent",
-        },
-        {
-          date: "10/01/2020 15:50:00",
-          message: "Ricordati di stendere i panni",
-          status: "sent",
-        },
-        {
-          date: "10/01/2020 16:15:22",
-          message: "Tutto fatto!",
-          status: "received",
-        },
-      ],
-    },
+    showedChat: {},
+    newMessage: "",
   },
 
-  methods: {},
+  beforeMount() {
+    this.showedChat = this.contacts[0];
+  },
+
+  methods: {
+    setShowedChat(contact) {
+      this.showedChat = contact;
+    },
+
+    truncatePhrase(phrase) {
+      if (phrase.length > 40) {
+        return phrase.substring(0, 38) + "...";
+      }
+
+      return phrase;
+    },
+
+    sendMessage() {
+      this.showedChat.messages.push({
+        date: "10/01/2020 15:30:55",
+        message: this.newMessage,
+        status: "sent",
+      });
+
+      this.newMessage = "";
+
+      setTimeout(() => {
+        this.showedChat.messages.push({
+          date: "10/01/2020 15:30:55",
+          message: "ok",
+          status: "received",
+        });
+      }, 1000);
+    },
+  },
 });
