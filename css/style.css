@@ -10,6 +10,14 @@
     background-color: #eaeaea;
 }
 
+.bg-not-cyan {
+    background-color: #8edafc;
+}
+
+.text-wa-grey {
+    color: #b1b1b1;
+}
+
 #left-chat {
     flex-basis: calc(100% / 3);
 }
@@ -20,4 +28,20 @@
 
 #account-info {
     height: 8%;
+}
+
+#actions i:hover {
+    color: black;
+}
+
+#notifications {
+    height: 8%;
+}
+
+#notifications-bell i {
+    color: #8edafc;
+}
+
+#notifications-text span {
+    font-size: 14px;
 }

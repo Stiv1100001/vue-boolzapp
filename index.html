@@ -19,6 +19,9 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
     />
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/db3c248fc2.js" crossorigin="anonymous"></script>
+
     <!-- Custom style -->
     <link rel="stylesheet" href="css/style.css" />
 
@@ -32,10 +35,33 @@
       <section class="position-absolute top-0 vh-100 vw-100">
         <div class="container vh-100 py-5 px-0">
           <div id="main-chat" class="bg-chat-grey w-100 h-100 d-flex">
-            <div id="left-chat" class="h-100 border-end border-2 border-dark">
+            <div id="left-chat" class="h-100 border-end border-2 border-dark d-flex flex-column">
               <div id="account-info" class="p-2 d-flex justify-content-between">
-                <div id="user" class="ms-2"></div>
-                <div id="actions"></div>
+                <div id="user" class="d-flex align-items-center">
+                  <img
+                    src="https://unsplash.it/300/300?image=15"
+                    alt=""
+                    class="h-100 rounded-circle"
+                  />
+                  <h6 class="mb-0 ms-2 fw-bold">Stefano</h6>
+                </div>
+                <div
+                  id="actions"
+                  class="d-flex justify-content-end align-items-center text-wa-grey"
+                >
+                  <i class="fa-solid fa-circle-notch fa-lg"></i>
+                  <i class="fa-solid fa-message fa-lg ms-2"></i>
+                  <i class="fa-solid fa-bars fa-lg ms-2"></i>
+                </div>
+              </div>
+              <div id="notifications" class="bg-not-cyan py-2 px-4 d-flex align-items-center">
+                <div id="notifications-bell" class="bg-white rounded-circle p-2">
+                  <i class="fa-solid fa-bell-slash"></i>
+                </div>
+                <div id="notifications-text" class="ms-2 py-2">
+                  <span class="d-block fw-bold">Ricevi notifiche di nuovi messaggi</span>
+                  <span class="d-block text-decoration-underline">Attiva notifiche desktop</span>
+                </div>
               </div>
             </div>
             <div id="right-chat" class="h-100"></div>
