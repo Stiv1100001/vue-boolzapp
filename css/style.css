@@ -45,3 +45,15 @@
 #notifications-text span {
     font-size: 14px;
 }
+
+#search-bar {
+    height: 5%;
+}
+
+#search-icon {
+    width: 15%;
+}
+
+#search {
+    width: 85%;
+}
