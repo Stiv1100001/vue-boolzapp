@@ -19,23 +19,22 @@
 }
 
 #left-chat {
-    flex-basis: calc(100% / 3);
+    width: calc(100% / 3);
 }
 
 #right-chat {
-    flex-basis: calc(100% / 3 * 2);
+    width: calc(100% / 3 * 2);
 }
 
-#account-info {
+#account-info,
+#main-chat-user,
+#chat-control,
+#notifications {
     height: 8%;
 }
 
 #actions i:hover {
     color: black;
-}
-
-#notifications {
-    height: 8%;
 }
 
 #notifications-bell i {
@@ -70,6 +69,15 @@
     font-size: 13px;
 }
 
-.chat-item:hover {
+.chat-item:hover, .chat-item.active {
     background-color: rgba(179, 179, 179, 0.63);
+}
+
+#chat {
+    background-image: url('../img/mine.jpg');
+}
+
+#emoji,
+#microphone {
+    width: 10%;
 }
