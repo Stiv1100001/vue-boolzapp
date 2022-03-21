@@ -34,7 +34,7 @@
       <section class="w-100 h-75 bg-wa-grey"></section>
       <section class="position-absolute top-0 vh-100 vw-100">
         <div class="container vh-100 py-5 px-0">
-          <div id="main-chat" class="bg-chat-grey w-100 h-100 d-flex">
+          <div class="bg-chat-grey w-100 h-100 d-flex">
             <div id="left-chat" class="h-100 border-end border-2 border-dark d-flex flex-column">
               <div id="account-info" class="p-2 d-flex justify-content-between">
                 <div id="user" class="d-flex align-items-center">
@@ -50,7 +50,7 @@
                   <i class="fa-solid fa-bars fa-lg ms-2"></i>
                 </div>
               </div>
-              <div id="notifications" class="bg-not-cyan py-2 px-4 d-flex align-items-center">
+              <div id="notifications" class="bg-not-cyan py-2 px-3 d-flex align-items-center">
                 <div id="notifications-bell" class="bg-white rounded-circle p-2">
                   <i class="fa-solid fa-bell-slash"></i>
                 </div>
@@ -60,7 +60,7 @@
                 </div>
               </div>
               <div id="search-bar" class="p-1">
-                <div class="d-flex h-100 align-items-center ms-2">
+                <div class="d-flex h-100 align-items-center">
                   <div
                     id="search-icon"
                     class="bg-white h-100 d-flex justify-content-center align-items-center"
@@ -75,6 +75,29 @@
                   />
                 </div>
               </div>
+              <ul v-if="contacts.length > 0" id="chats" class="p-0 m-0 overflow-auto bg-white">
+                <li
+                  v-for="contact in contacts"
+                  class="chat-item list-unstyled py-1 px-2 w-100 d-flex"
+                >
+                  <img
+                    :src="`img/avatar${contact.avatar}.jpg`"
+                    alt=""
+                    class="rounded-circle h-100"
+                  />
+                  <div class="chat-text d-flex flex-column flex-grow-1">
+                    <span class="fw-bold">{{ contact.name }}</span>
+                    <span class="text-wa-grey">
+                      {{ contact.messages[contact.messages.length - 1].message }}</span
+                    >
+                  </div>
+                  <div class="date">
+                    <span class="text-wa-grey"
+                      >{{ contact.messages[contact.messages.length - 1].date.split(" ")[1] }}</span
+                    >
+                  </div>
+                </li>
+              </ul>
             </div>
             <div id="right-chat" class="h-100"></div>
           </div>

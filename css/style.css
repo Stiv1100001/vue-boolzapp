@@ -57,3 +57,19 @@
 #search {
     width: 85%;
 }
+
+#chats {
+    height: 79%;
+}
+
+#chats li {
+    height: 11%;
+}
+
+.date span {
+    font-size: 13px;
+}
+
+.chat-item:hover {
+    background-color: rgba(179, 179, 179, 0.63);
+}
