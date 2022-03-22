@@ -1,3 +1,23 @@
+/* Global */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+i {
+    cursor: pointer;
+    transition: color .2s;
+}
+
+i:hover {
+    color: black;
+}
+
+
 /* Colors */
 .bg-wa-green {
     background-color: #00a884;
@@ -19,20 +39,14 @@
     color: #b1b1b1;
 }
 
-#actions i:hover {
-    color: black;
-}
 
+/* Left Element */
 #notifications-bell i {
     color: #8edafc;
 }
 
 #left-chat {
     width: calc(100% / 3);
-}
-
-#right-chat {
-    width: calc(100% / 3 * 2);
 }
 
 #account-info,
@@ -43,7 +57,7 @@
 }
 
 #notifications-text span {
-    font-size: 14px;
+    font-size: .75rem;
 }
 
 #search-bar {
@@ -67,12 +81,17 @@
 }
 
 .date span {
-    font-size: 13px;
+    font-size: .7rem;
 }
 
 .chat-item:hover,
 .chat-item.active {
     background-color: rgba(179, 179, 179, 0.336);
+}
+
+/* Right element */
+#right-chat {
+    width: calc(100% / 3 * 2);
 }
 
 #chat {
@@ -81,14 +100,23 @@
 }
 
 #emoji,
-#microphone {
+#send-message {
     width: 10%;
     color: rgba(100, 100, 100, 0.781);
 }
 
+/* Message baloon */
+.sent {
+    background-color: #d5f9ba;
+    margin-left: auto;
+}
+
+.received {
+    background-color: white;
+}
+
 .message {
     border-radius: 5px;
-
     min-width: 40%;
 }
 
@@ -121,32 +149,9 @@
     display: block;
 }
 
-
 .message .hour {
-    font-size: 10px;
+    font-size: .6rem;
 
     bottom: 2px;
     right: 10px;
-}
-
-.sent {
-    background-color: #d5f9ba;
-    margin-left: auto;
-}
-
-.received {
-    background-color: white;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-*::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-* {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
 }

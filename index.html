@@ -33,16 +33,21 @@
   </head>
   <body>
     <main id="app" class="vh-100 vw-100 position-relative">
+      <!-- Colored Backgrounds -->
       <section class="w-100 h-25 bg-wa-green"></section>
       <section class="w-100 h-75 bg-wa-grey"></section>
+
+      <!-- Main Content -->
       <section class="position-absolute top-0 vh-100 vw-100">
         <div class="container vh-100 py-5 px-0">
+          <!-- Floating card -->
           <div class="bg-chat-grey w-100 h-100 d-flex">
+            <!-- Left Element -->
             <div id="left-chat" class="h-100 d-flex flex-column">
               <!-- User info -->
-              <div id="account-info" class="p-2 d-flex border-end border-1">
+              <div id="account-info" class="p-2 d-flex border-end border-1 justify-content-between">
                 <!-- User data -->
-                <div id="user" class="d-flex align-items-center w-75">
+                <div id="user" class="d-flex align-items-center w-50">
                   <img src="img/avatar_io.jpg" alt="Stefano" class="h-100 rounded-circle" />
                   <h6 class="mb-0 ms-2 fw-bold">Stefano</h6>
                 </div>
@@ -56,6 +61,7 @@
                   <i class="fa-solid fa-bars fa-lg ms-2"></i>
                 </div>
               </div>
+              <!-- Notifications pop up -->
               <div id="notifications" class="bg-not-cyan py-2 px-3 d-flex align-items-center">
                 <div id="notifications-bell" class="bg-white rounded-circle p-2">
                   <i class="fa-solid fa-bell-slash"></i>
@@ -65,6 +71,7 @@
                   <span class="d-block text-decoration-underline">Attiva notifiche desktop</span>
                 </div>
               </div>
+              <!-- Searchbar -->
               <div id="search-bar" class="p-1">
                 <div class="d-flex h-100 align-items-center">
                   <div
@@ -83,6 +90,7 @@
                   />
                 </div>
               </div>
+              <!-- Chats list -->
               <ul
                 v-if="contactsToShow.length > 0"
                 id="chats"
@@ -91,7 +99,7 @@
                 <li
                   v-for="contact in contactsToShow"
                   v-show="contact.visible"
-                  class="chat-item list-unstyled py-1 px-2 w-100 d-flex"
+                  class="chat-item list-unstyled p-2 d-flex border-bottom border-1 overflow-hidden"
                   :class="contact === showedChat ? 'active' : '' "
                   @click="setShowedChat(contact)"
                 >
@@ -110,9 +118,12 @@
                 </li>
               </ul>
             </div>
+
+            <!-- Right Element -->
             <div id="right-chat" class="h-100 d-flex flex-column">
-              <div id="main-chat-user" class="d-flex justify-content-between py-1 px-2">
-                <div id="main-user-info" class="d-flex align-items-center">
+              <!-- User main info -->
+              <div id="main-chat-user" class="d-flex justify-content-between py-1 px-2 w-100">
+                <div id="main-user-info" class="d-flex align-items-center w-50">
                   <img
                     :src="`img/avatar${showedChat.avatar}.jpg`"
                     :alt="showedChat.name"
@@ -120,10 +131,7 @@
                   />
                   <div class="d-flex flex-column">
                     <span> {{ showedChat.name }}</span>
-                    <span>
-                      Ultimo accesso alle {{ showedChat.messages[showedChat.messages.length -
-                      1].date.split(" ")[1] }}</span
-                    >
+                    <span> Ultimo accesso alle {{ getTime(showedChat) }}</span>
                   </div>
                 </div>
                 <div id="main-user-actions" class="d-flex align-items-center text-wa-grey">
@@ -169,9 +177,12 @@
                     @keyup.enter="sendMessage()"
                   />
                 </div>
-                <div id="microphone" class="h-100 d-flex justify-content-center align-items-center">
+                <div
+                  id="send-message"
+                  class="h-100 d-flex justify-content-center align-items-center"
+                >
                   <i v-if="newMessage === ''" class="fa-solid fa-microphone fa-xl"></i>
-                  <i v-else class="fa-solid fa-location-arrow fa-xl"></i>
+                  <i v-else class="fa-solid fa-location-arrow fa-xl" @click="sendMessage()"></i>
                 </div>
               </div>
             </div>
