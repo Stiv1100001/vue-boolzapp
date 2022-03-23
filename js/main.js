@@ -208,11 +208,11 @@ const app = new Vue({
 
     getLastMessageTime(contact) {
       const date = contact.messages[contact.messages.length - 1].date;
-      return dayjs(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
+      return moment(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
     },
 
     getTime(date) {
-      return dayjs(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
+      return moment(date, "DD/MM/YYYY HH:mm:ss").format("HH:mm");
     },
 
     search() {
