@@ -164,7 +164,6 @@ const app = new Vue({
         ],
       },
     ],
-    contactsToShow: [],
 
     showedChat: {},
     newMessage: "",
@@ -172,9 +171,7 @@ const app = new Vue({
   },
 
   beforeMount() {
-    Object.assign(this.contactsToShow, this.contacts);
-    // this.contactsToShow = this.contacts;
-    this.showedChat = this.contactsToShow[0];
+    this.showedChat = this.contacts[0];
   },
 
   methods: {
@@ -219,9 +216,11 @@ const app = new Vue({
     },
 
     search() {
-      this.contactsToShow = this.contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(this.toSearch.trim().toLowerCase())
-      );
+      for (let i = 0; i < this.contacts.length; i++) {
+        this.contacts[i].visible = this.contacts[i].name
+          .toLowerCase()
+          .includes(this.toSearch.toLowerCase());
+      }
     },
 
     deleteMessage(index) {

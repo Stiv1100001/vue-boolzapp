@@ -91,14 +91,10 @@
                 </div>
               </div>
               <!-- Chats list -->
-              <ul
-                v-if="contactsToShow.length > 0"
-                id="chats"
-                class="p-0 m-0 overflow-auto bg-white"
-              >
+              <ul v-if="contacts.length > 0" id="chats" class="p-0 m-0 overflow-auto bg-white">
                 <li
-                  v-for="contact in contactsToShow"
-                  v-show="contact.visible"
+                  v-for="contact in contacts"
+                  v-if="contact.visible"
                   class="chat-item list-unstyled p-2 d-flex border-bottom border-1 overflow-hidden"
                   :class="contact === showedChat ? 'active' : '' "
                   @click="setShowedChat(contact)"
