@@ -190,7 +190,7 @@ const app = new Vue({
 
     sendMessage() {
       this.showedChat.messages.push({
-        date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+        date: moment().format("DD/MM/YYYY HH:mm:ss"),
         message: this.newMessage,
         status: "sent",
       });
@@ -199,7 +199,7 @@ const app = new Vue({
 
       setTimeout(() => {
         this.showedChat.messages.push({
-          date: dayjs().format("DD/MM/YYYY H:m:ss"),
+          date: moment().format("DD/MM/YYYY H:m:ss"),
           message: "ok",
           status: "received",
         });
