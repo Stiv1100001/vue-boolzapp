@@ -98,11 +98,11 @@
               <!-- Chats list -->
               <ul v-if="contacts.length > 0" id="chats" class="p-0 m-0 overflow-auto bg-white">
                 <li
-                  v-for="contact in contacts"
+                  v-for="(contact, index) in contacts"
                   v-if="contact.visible"
                   class="chat-item list-unstyled p-2 d-flex border-bottom border-1 overflow-hidden"
-                  :class="contact === showedChat ? 'active' : '' "
-                  @click="setShowedChat(contact)"
+                  :class="index === currentIndex ? 'active' : '' "
+                  @click="setShowedChat(index)"
                 >
                   <img
                     :src="`img/avatar${contact.avatar}.jpg`"
@@ -126,13 +126,15 @@
               <div id="main-chat-user" class="d-flex justify-content-between py-1 px-2 w-100">
                 <div id="main-user-info" class="d-flex align-items-center w-50">
                   <img
-                    :src="`img/avatar${showedChat.avatar}.jpg`"
-                    :alt="showedChat.name"
+                    :src="`img/avatar${contacts[currentIndex].avatar}.jpg`"
+                    :alt="contacts[currentIndex].name"
                     class="h-100 rounded-circle"
                   />
                   <div class="d-flex flex-column">
-                    <span> {{ showedChat.name }}</span>
-                    <span> Ultimo accesso alle {{ getTime(showedChat) }}</span>
+                    <span> {{ contacts[currentIndex].name }}</span>
+                    <span>
+                      Ultimo accesso alle {{ getLastMessageTime(contacts[currentIndex]) }}</span
+                    >
                   </div>
                 </div>
                 <div id="main-user-actions" class="d-flex align-items-center text-wa-grey">
@@ -144,7 +146,7 @@
 
               <div id="chat" class="flex-grow-1 overflow-auto">
                 <ul class="w-100 h-100 overflow-auto p-0 m-0">
-                  <li v-for="(message, index) in showedChat.messages" class="d-flex">
+                  <li v-for="(message, index) in contacts[currentIndex].messages" class="d-flex">
                     <div
                       class="px-2 pt-2 pb-3 my-2 message position-relative"
                       :class="message.status === 'sent' ? 'sent' : 'received'"

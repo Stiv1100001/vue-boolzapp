@@ -165,18 +165,15 @@ const app = new Vue({
       },
     ],
 
+    currentIndex: 0,
     showedChat: {},
     newMessage: "",
     toSearch: "",
   },
 
-  beforeMount() {
-    this.showedChat = this.contacts[0];
-  },
-
   methods: {
-    setShowedChat(contact) {
-      this.showedChat = contact;
+    setShowedChat(index) {
+      this.currentIndex = index;
     },
 
     truncateLastMessage(contact) {
@@ -189,16 +186,17 @@ const app = new Vue({
     },
 
     sendMessage() {
-      this.showedChat.messages.push({
+      this.contacts[this.currentIndex].messages.push({
         date: moment().format("DD/MM/YYYY HH:mm:ss"),
         message: this.newMessage,
         status: "sent",
       });
 
       this.newMessage = "";
+      const index = this.currentIndex;
 
       setTimeout(() => {
-        this.showedChat.messages.push({
+        this.contacts[index].messages.push({
           date: moment().format("DD/MM/YYYY H:m:ss"),
           message: "ok",
           status: "received",
@@ -224,7 +222,7 @@ const app = new Vue({
     },
 
     deleteMessage(index) {
-      this.showedChat.messages.splice(index, 1);
+      this.contacs[this.currentIndex].messages.splice(index, 1);
     },
   },
 });
